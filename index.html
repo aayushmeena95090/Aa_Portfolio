@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aayush Meena | B.Tech CSE Portfolio & Supercar Tech Space</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Futuristic Google Fonts with local fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body data-current-page="home">
+
+  <!-- Background Ambience & Cyber Grid -->
+  <div class="cyber-bg-overlay"></div>
+  <div class="cyber-grid-canvas"></div>
+  <div class="particle-ambient"></div>
+
+  <!-- Real Supercars Drifting Transition Screen Overlay -->
+  <div id="carTransitionOverlay" class="car-transition-overlay" aria-hidden="true">
+    <!-- Drift Tarmac Surface & Burning Rubber Skid Marks -->
+    <div class="drift-tarmac-surface">
+      <div class="drift-skid-track" id="driftSkidTrack"></div>
+      <div class="drift-ground-smoke"></div>
+    </div>
+
+    <!-- Volumetric Tire Smoke Plumes Billowing From Tires -->
+    <div class="drift-smoke-cloud-layer">
+      <div class="smoke-puff puff-1"></div>
+      <div class="smoke-puff puff-2"></div>
+      <div class="smoke-puff puff-3"></div>
+      <div class="smoke-puff puff-4"></div>
+      <div class="smoke-puff puff-5"></div>
+      <div class="smoke-puff puff-6"></div>
+    </div>
+
+    <!-- Friction Sparks Shower from Tires/Diffuser -->
+    <div class="drift-sparks-shower">
+      <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span>
+      <span class="spark s4"></span><span class="spark s5"></span><span class="spark s6"></span>
+      <span class="spark s7"></span><span class="spark s8"></span><span class="spark s9"></span>
+      <span class="spark s10"></span><span class="spark s11"></span><span class="spark s12"></span>
+    </div>
+
+    <!-- Speed Warp Flash Streaks -->
+    <div class="drift-speed-streaks">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Real Supercar Drifting Vehicle Rig -->
+    <div class="supercar-drift-rig" id="transitionVehicle">
+      <!-- Photorealistic Car Drift Image Container -->
+      <div class="drift-car-visual" id="driftCarVisual">
+        <img src="bugatti-drift.jpg" alt="Supercar Drifting" class="drift-car-image" id="driftCarImage">
+        <!-- Exhaust Backfire Flame Burst -->
+        <div class="drift-exhaust-fire" id="driftExhaustFire">
+          <div class="fire-cone"></div>
+          <div class="fire-sparkle"></div>
+        </div>
+        <!-- Headlight Beam Cone -->
+        <div class="drift-headlight-flare"></div>
+      </div>
+
+      <!-- Real-Time Telemetry Cockpit Readout -->
+      <div class="transition-telemetry">
+        <div class="telemetry-drift-angle" id="transitionDriftAngle">LATERAL DRIFT: 48° // 1.6G</div>
+        <span class="telemetry-badge" id="transitionCarName">BUGATTI CHIRON // POWERSLIDE 490 KM/H</span>
+        <span class="telemetry-mode" id="transitionCarMode">QUAD-TURBO W16 // OVERSTEER DRIFT ACTIVE</span>
+      </div>
+    </div>
+
+    <!-- Camera Shake & Flash Impact Vignette -->
+    <div class="drift-impact-flash"></div>
+  </div>
+
+  <!-- Top Cyber Header Navigation -->
+  <header class="cyber-header">
+    <div class="header-brand" onclick="navigateTo('home')">
+      <div class="brand-hex">
+        <span class="brand-initial">AM</span>
+      </div>
+      <div class="brand-meta">
+        <span class="brand-name">AAYUSH MEENA</span>
+        <span class="brand-tag">B.TECH CSE '28 // JECRC</span>
+      </div>
+    </div>
+
+    <!-- Center Navigation Links -->
+    <nav class="nav-links" id="mainNav">
+      <button class="nav-item active" data-target="home" onclick="navigateTo('home')">
+        <span class="nav-index">01</span> HOME
+      </button>
+      <button class="nav-item" data-target="about" onclick="navigateTo('about')">
+        <span class="nav-index">02</span> ABOUT ME
+      </button>
+      <button class="nav-item" data-target="education" onclick="navigateTo('education')">
+        <span class="nav-index">03</span> EDUCATION
+      </button>
+      <button class="nav-item" data-target="skills" onclick="navigateTo('skills')">
+        <span class="nav-index">04</span> SKILLS
+      </button>
+      <button class="nav-item" data-target="certifications" onclick="navigateTo('certifications')">
+        <span class="nav-index">05</span> ACHIEVEMENTS
+      </button>
+      <button class="nav-item" data-target="contact" onclick="navigateTo('contact')">
+        <span class="nav-index">06</span> CONTACT
+      </button>
+    </nav>
+
+    <!-- Header Actions (Engine Sound FX toggle & Social Quick Links) -->
+    <div class="header-actions">
+      <!-- Engine Sound FX Synth Toggle -->
+      <button id="soundToggleBtn" class="sound-toggle-btn" title="Toggle Supercar V12 Engine & Nitro Sound">
+        <span class="sound-icon">🔊</span>
+        <span class="sound-label">AUDIO: ON</span>
+      </button>
+
+      <!-- GitHub Link -->
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="Visit GitHub Profile">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+
+      <!-- LinkedIn Link -->
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="Visit LinkedIn Profile">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Right-Side Vertical Section Display Bar (HUD Telemetry Navigation) -->
+  <aside class="right-hud-bar" id="rightHudBar">
+    <div class="hud-top-marker">
+      <span class="hud-dot-pulse"></span>
+      <span class="hud-label-rpm">REV: 9800</span>
+    </div>
+
+    <div class="hud-track">
+      <div class="hud-track-progress" id="hudProgressIndicator"></div>
+
+      <!-- Section HUD Nodes with supercar icons & labels -->
+      <button class="hud-node active" data-section="home" onclick="navigateTo('home')">
+        <div class="hud-node-indicator">
+          <span class="hud-node-core"></span>
+          <span class="hud-node-ring"></span>
+        </div>
+        <div class="hud-tooltip">
+          <span class="hud-tip-num">01</span>
+          <span class="hud-tip-name">HOME</span>
+          <span class="hud-car-badge">BUGATTI</span>
+        </div>
+      </button>
+
+      <button class="hud-node" data-section="about" onclick="navigateTo('about')">
+        <div class="hud-node-indicator">
+          <span class="hud-node-core"></span>
+          <span class="hud-node-ring"></span>
+        </div>
+        <div class="hud-tooltip">
+          <span class="hud-tip-num">02</span>
+          <span class="hud-tip-name">ABOUT ME</span>
+          <span class="hud-car-badge">LAMBORGHINI</span>
+        </div>
+      </button>
+
+      <button class="hud-node" data-section="education" onclick="navigateTo('education')">
+        <div class="hud-node-indicator">
+          <span class="hud-node-core"></span>
+          <span class="hud-node-ring"></span>
+        </div>
+        <div class="hud-tooltip">
+          <span class="hud-tip-num">03</span>
+          <span class="hud-tip-name">EDUCATION</span>
+          <span class="hud-car-badge">BMW M-POWER</span>
+        </div>
+      </button>
+
+      <button class="hud-node" data-section="skills" onclick="navigateTo('skills')">
+        <div class="hud-node-indicator">
+          <span class="hud-node-core"></span>
+          <span class="hud-node-ring"></span>
+        </div>
+        <div class="hud-tooltip">
+          <span class="hud-tip-num">04</span>
+          <span class="hud-tip-name">SKILLS</span>
+          <span class="hud-car-badge">DODGE HELLCAT</span>
+        </div>
+      </button>
+
+      <button class="hud-node" data-section="certifications" onclick="navigateTo('certifications')">
+        <div class="hud-node-indicator">
+          <span class="hud-node-core"></span>
+          <span class="hud-node-ring"></span>
+        </div>
+        <div class="hud-tooltip">
+          <span class="hud-tip-num">05</span>
+          <span class="hud-tip-name">ACHIEVEMENTS</span>
+          <span class="hud-car-badge">NINJA H2R</span>
+        </div>
+      </button>
+
+      <button class="hud-node" data-section="contact" onclick="navigateTo('contact')">
+        <div class="hud-node-indicator">
+          <span class="hud-node-core"></span>
+          <span class="hud-node-ring"></span>
+        </div>
+        <div class="hud-tooltip">
+          <span class="hud-tip-num">06</span>
+          <span class="hud-tip-name">CONTACT</span>
+          <span class="hud-car-badge">COMMS // HUD</span>
+        </div>
+      </button>
+    </div>
+
+    <div class="hud-bottom-telemetry">
+      <span class="hud-speedometer-val" id="hudSpeedDisplay">000</span>
+      <span class="hud-speedometer-unit">KM/H</span>
+    </div>
+  </aside>
+
+  <!-- Main Multi-Page Section Stage -->
+  <main class="viewport-stage" id="viewportStage">
+
+    <!-- ==================== SECTION 01: HOME ==================== -->
+    <section class="page-section active-section" id="page-home" data-page="home">
+      <div class="section-container hero-container">
+        
+        <!-- Hero Supercar Glow Background -->
+        <div class="hero-backdrop" style="background-image: url('supercar-bg.jpg');"></div>
+        <div class="hero-backdrop-gradient"></div>
+
+        <div class="hero-content">
+          <!-- Left: Cybernetic Student Avatar Profile Card (avg 5'8 B.Tech boy) -->
+          <div class="hero-avatar-wrapper">
+            <div class="cyber-avatar-frame">
+              <div class="frame-scanner-line"></div>
+              <div class="frame-corner top-left"></div>
+              <div class="frame-corner top-right"></div>
+              <div class="frame-corner bottom-left"></div>
+              <div class="frame-corner bottom-right"></div>
+              <img src="profile.jpg" alt="Aayush Meena - B.Tech CSE Student" class="student-avatar-img">
+              <div class="avatar-tag">
+                <span class="pulse-indicator"></span>
+                <span>STATUS: CODING & REVIVING</span>
+              </div>
+            </div>
+            <!-- Telemetry Pill below avatar -->
+            <div class="student-bio-telemetry">
+              <span class="bio-spec">AGE: 18 YRS</span>
+              <span class="bio-divider">//</span>
+              <span class="bio-spec">BUILD: 5'8"</span>
+              <span class="bio-divider">//</span>
+              <span class="bio-spec">JECRC CSE '28</span>
+            </div>
+          </div>
+
+          <!-- Right: Hero Information & Titles -->
+          <div class="hero-text-wrapper">
+            <div class="hero-badge-row">
+              <span class="cyber-chip chip-cyan">⚡ 1ST YEAR B.TECH CSE</span>
+              <span class="cyber-chip chip-orange">🏎️ HIGH-PERFORMANCE TECH</span>
+            </div>
+
+            <h1 class="hero-name-title">
+              <span class="name-first">AAYUSH</span>
+              <span class="name-last">MEENA</span>
+            </h1>
+
+            <p class="hero-quote-info">
+              "I love figuring out how things work behind the scenes - from code and algorithms to the AI tools shaping our future. Currently building, breaking and learning one project at a time."
+            </p>
+
+            <!-- Two Small Direct Action Boxes in Middle of Home Page (As Requested) -->
+            <div class="hero-action-boxes">
+              <!-- Box 1: View Certificates -->
+              <button class="action-card action-card-certificates" onclick="navigateTo('certifications')" title="Jump directly to Certifications & Achievements">
+                <div class="card-icon-hud">🏆</div>
+                <div class="card-text-group">
+                  <span class="card-header-label">CREDENTIALS</span>
+                  <span class="card-title-bold">VIEW CERTIFICATES</span>
+                  <span class="card-sub-arrow">DIRECT SWITCH &rarr;</span>
+                </div>
+                <div class="card-glow-edge"></div>
+              </button>
+
+              <!-- Box 2: Contact Me -->
+              <button class="action-card action-card-contact" onclick="navigateTo('contact')" title="Jump directly to Contact Information">
+                <div class="card-icon-hud">📡</div>
+                <div class="card-text-group">
+                  <span class="card-header-label">GET IN TOUCH</span>
+                  <span class="card-title-bold">CONTACT ME</span>
+                  <span class="card-sub-arrow">INITIATE COMMS &rarr;</span>
+                </div>
+                <div class="card-glow-edge"></div>
+              </button>
+            </div>
+
+            <!-- Quick Social badges -->
+            <div class="hero-social-strip">
+              <span class="strip-label">DIRECT CHANNELS:</span>
+              <a href="mailto:aayush.meena.95090@gmail.com" class="strip-link">📧 aayush.meena.95090@gmail.com</a>
+              <a href="tel:9509027309" class="strip-link">📱 +91 9509027309</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reserved Bottom-Mid Space: Interactive AI Neural Chatbot Integration (As Requested) -->
+        <div class="home-bottom-mid-dock">
+          <div class="ai-chatbot-dock" id="aiChatbotDock">
+            <div class="chatbot-header" onclick="toggleChatbot()">
+              <div class="chatbot-status">
+                <span class="ai-pulse-orb"></span>
+                <span class="chatbot-title">A.I. NEURAL ASSISTANT</span>
+                <span class="chatbot-version">[v1.0 ONLINE]</span>
+              </div>
+              <div class="chatbot-controls">
+                <span class="chatbot-badge">CLICK TO CHAT</span>
+                <span class="dock-toggle-icon" id="dockToggleIcon">▲</span>
+              </div>
+            </div>
+
+            <div class="chatbot-body" id="chatbotBody">
+              <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chat-msg ai-msg">
+                  <div class="chat-sender">⚡ AAYUSH_AI_BOT:</div>
+                  <div class="chat-bubble">Hey there! I am Aayush's neural assistant. Ask me about his B.Tech studies at JECRC, skills in C/Web/AI, chess & badminton wins, or his passion for supercars!</div>
+                </div>
+              </div>
+
+              <!-- Quick query chips -->
+              <div class="chat-chips">
+                <button class="chip-btn" onclick="sendQuickPrompt('Who is Aayush Meena?')">Who is Aayush?</button>
+                <button class="chip-btn" onclick="sendQuickPrompt('What are his skills?')">Skills Overview</button>
+                <button class="chip-btn" onclick="sendQuickPrompt('Education details?')">Education</button>
+                <button class="chip-btn" onclick="sendQuickPrompt('How can I contact him?')">Contact Details</button>
+              </div>
+
+              <!-- Input bar -->
+              <form class="chatbot-input-bar" id="chatbotForm" onsubmit="handleChatSubmit(event)">
+                <input type="text" id="chatInput" placeholder="Ask AI anything about Aayush..." autocomplete="off">
+                <button type="submit" class="chat-send-btn" aria-label="Send Message">
+                  <span>SEND</span> &rarr;
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 02: ABOUT ME ==================== -->
+    <section class="page-section" id="page-about" data-page="about">
+      <div class="section-container">
+        <!-- Section Title HUD -->
+        <div class="section-header-hud">
+          <div class="hud-badge-tag">
+            <span class="tag-icon">⚡</span>
+            <span>SYSTEM_PROFILE // 02</span>
+          </div>
+          <h2 class="section-title">ABOUT ME</h2>
+          <p class="section-subtitle">Behind-the-scenes engineering, college life & future horizons.</p>
+        </div>
+
+        <!-- Box-Shaped Cards Grid (Modular, No huge wall of text) -->
+        <div class="cards-grid about-cards-grid">
+          
+          <!-- Box 1: Core Persona -->
+          <div class="cyber-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">🎯</div>
+              <span class="box-kicker">IDENTITY // CORE</span>
+            </div>
+            <h3 class="box-title">18-Year-Old CSE Explorer</h3>
+            <p class="box-body-text">
+              Just an 18-year-old boy figuring behind-the-scenes programming out. I completed my schooling with 82% and I’m a first-year B.Tech Computer Science Engineering student at JECRC, passionate about technology, programming, and building creative digital experiences.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">18 YRS</span>
+              <span class="mini-tag">JECRC FOUNDATION</span>
+              <span class="mini-tag">JAIPUR</span>
+            </div>
+          </div>
+
+          <!-- Box 2: Current Focus & Toolkit -->
+          <div class="cyber-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">💻</div>
+              <span class="box-kicker">ENGINEERING // STACK</span>
+            </div>
+            <h3 class="box-title">Developing Strong Foundations</h3>
+            <p class="box-body-text">
+              I’m currently developing my skills in C programming, HTML, CSS, JavaScript, Git, and modern AI tools. I enjoy exploring new technologies, solving problems, and turning ideas into practical projects.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">C PROGRAMMING</span>
+              <span class="mini-tag">HTML & CSS</span>
+              <span class="mini-tag">GIT</span>
+              <span class="mini-tag">AI TOOLS</span>
+            </div>
+          </div>
+
+          <!-- Box 3: Career Goals & Vision -->
+          <div class="cyber-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">🚀</div>
+              <span class="box-kicker">HORIZON // ASPIRATION</span>
+            </div>
+            <h3 class="box-title">Building Real-World Impact</h3>
+            <p class="box-body-text">
+              As I begin my journey in software development, I’m focused on strengthening my programming fundamentals, building real-world projects, and continuously learning new skills. My goal is to become a skilled software developer, contribute to impactful projects, and explore opportunities in software engineering and AI.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">SOFTWARE ENG</span>
+              <span class="mini-tag">AI SYSTEMS</span>
+              <span class="mini-tag">PROBLEM SOLVER</span>
+            </div>
+          </div>
+
+          <!-- Box 4: Supercar & Engineering Passion Accent -->
+          <div class="cyber-box-card card-accent-telemetry">
+            <div class="box-card-header">
+              <div class="box-icon">🏎️</div>
+              <span class="box-kicker">VELOCITY // INSPIRATION</span>
+            </div>
+            <h3 class="box-title">The Supercar Mindset</h3>
+            <p class="box-body-text">
+              Just like a twin-turbo V8 or a V12 hybrid aerodynamically tuned for zero drag, I treat software engineering with obsession for speed, precision, and peak performance. Code is my engine; logic is my transmission.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">LAMBORGHINI REVUELTO</span>
+              <span class="mini-tag">AERODYNAMICS</span>
+              <span class="mini-tag">PEAK RPM</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section Navigation Footer -->
+        <div class="section-footer-nav">
+          <button class="telemetry-nav-btn" onclick="navigateTo('education')">
+            <span>NEXT: VIEW EDUCATION & BLUEPRINTS</span> &rarr;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 03: EDUCATION ==================== -->
+    <section class="page-section" id="page-education" data-page="education">
+      <div class="section-container education-blueprint-wrapper">
+        
+        <!-- Blueprint Exam Schematic Background (Paper-Pen-Exams style as requested) -->
+        <div class="blueprint-backdrop" style="background-image: url('education-bg.jpg');"></div>
+        <div class="blueprint-grid-overlay"></div>
+
+        <!-- Section Title HUD -->
+        <div class="section-header-hud blueprint-header">
+          <div class="hud-badge-tag">
+            <span class="tag-icon">📐</span>
+            <span>ACADEMIC_BLUEPRINT // 03</span>
+          </div>
+          <h2 class="section-title">EDUCATION</h2>
+          <p class="section-subtitle">Academic record & engineering milestones.</p>
+        </div>
+
+        <!-- Short and Simple Box Layout (As Requested) -->
+        <div class="cards-grid education-cards-grid">
+          
+          <!-- Box 1: 10th CBSE -->
+          <div class="cyber-box-card blueprint-card">
+            <div class="blueprint-stamp">VERIFIED // CBSE</div>
+            <div class="box-card-header">
+              <div class="box-icon">📝</div>
+              <span class="box-kicker">SECONDARY SCHOOL // 10TH</span>
+            </div>
+            <div class="education-score-badge">
+              <span class="score-num">70%</span>
+              <span class="score-label">CBSE BOARD</span>
+            </div>
+            <h3 class="box-title">Class 10th Secondary Education</h3>
+            <p class="box-body-text">
+              Completed Class 10 with <strong>70%</strong> from Jodhpur CBSE Board. Built core discipline in science, mathematics, and analytical reasoning.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">JODHPUR</span>
+              <span class="mini-tag">CBSE</span>
+              <span class="mini-tag">SCIENCE & MATH</span>
+            </div>
+          </div>
+
+          <!-- Box 2: 12th CBSE -->
+          <div class="cyber-box-card blueprint-card">
+            <div class="blueprint-stamp stamp-accent">DISTINCTION // CBSE</div>
+            <div class="box-card-header">
+              <div class="box-icon">📚</div>
+              <span class="box-kicker">SENIOR SECONDARY // 12TH</span>
+            </div>
+            <div class="education-score-badge score-high">
+              <span class="score-num">82%</span>
+              <span class="score-label">CBSE BOARD</span>
+            </div>
+            <h3 class="box-title">Class 12th Senior Secondary</h3>
+            <p class="box-body-text">
+              Completed Class 12 with <strong>82%</strong> from Jodhpur CBSE Board. Focused on physics, chemistry, and mathematics with high commitment to problem solving.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">JODHPUR</span>
+              <span class="mini-tag">CBSE</span>
+              <span class="mini-tag">82 PERCENTAGE</span>
+            </div>
+          </div>
+
+          <!-- Box 3: B.Tech CSE Current -->
+          <div class="cyber-box-card blueprint-card">
+            <div class="blueprint-stamp stamp-active">IN PROGRESS // CSE</div>
+            <div class="box-card-header">
+              <div class="box-icon">🎓</div>
+              <span class="box-kicker">UNDERGRADUATION // PRESENT</span>
+            </div>
+            <div class="education-score-badge score-ongoing">
+              <span class="score-num">1ST YEAR</span>
+              <span class="score-label">B.TECH CSE</span>
+            </div>
+            <h3 class="box-title">B.Tech in Computer Science</h3>
+            <p class="box-body-text">
+              Currently pursuing 1st Year B.Tech Computer Science Engineering at <strong>JECRC</strong>. Exploring algorithms, C programming, data logic, and creative modern web development.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">JECRC</span>
+              <span class="mini-tag">CSE 2024-2028</span>
+              <span class="mini-tag">ALGORITHMS</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section Navigation Footer -->
+        <div class="section-footer-nav">
+          <button class="telemetry-nav-btn" onclick="navigateTo('skills')">
+            <span>NEXT: VIEW TECHNICAL SKILLS</span> &rarr;
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 04: SKILLS ==================== -->
+    <section class="page-section" id="page-skills" data-page="skills">
+      <div class="section-container">
+        
+        <!-- Section Title HUD -->
+        <div class="section-header-hud">
+          <div class="hud-badge-tag">
+            <span class="tag-icon">⚡</span>
+            <span>TELEMETRY_GAUGES // 04</span>
+          </div>
+          <h2 class="section-title">SKILLS & TOOLKIT</h2>
+          <p class="section-subtitle">Programming engines, AI tools, creative suites, and typing speed in box telemetry cards.</p>
+        </div>
+
+        <!-- Skills in Box Shape Cards (As Requested: No paragraphs) -->
+        <div class="cards-grid skills-cards-grid">
+          
+          <!-- Skill Card 1: C & C++ -->
+          <div class="cyber-box-card skill-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">⚙️</div>
+              <span class="box-kicker">CORE PROGRAMMING</span>
+            </div>
+            <h3 class="box-title">Learning C and C++</h3>
+            <p class="box-body-text">
+              Focusing on memory management, pointers, control flow, functions, and algorithmic problem solving as the foundation of computer science.
+            </p>
+            <div class="skill-meter-wrap">
+              <div class="skill-meter-label">
+                <span>FOUNDATIONS & SYNTAX</span>
+                <span class="meter-pct">ACTIVE STUDY</span>
+              </div>
+              <div class="meter-bar-track">
+                <div class="meter-bar-fill" style="width: 78%;"></div>
+              </div>
+            </div>
+            <div class="box-footer-tags">
+              <span class="mini-tag">C</span>
+              <span class="mini-tag">C++</span>
+              <span class="mini-tag">ALGORITHMS</span>
+            </div>
+          </div>
+
+          <!-- Skill Card 2: HTML & Web Stack -->
+          <div class="cyber-box-card skill-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">🌐</div>
+              <span class="box-kicker">WEB DEVELOPMENT</span>
+            </div>
+            <h3 class="box-title">Knows HTML & Web Basics</h3>
+            <p class="box-body-text">
+              Building responsive, semantic webpage structures with HTML5, styled with modern CSS layouts and interactive JavaScript logic.
+            </p>
+            <div class="skill-meter-wrap">
+              <div class="skill-meter-label">
+                <span>SEMANTICS & STRUCTURE</span>
+                <span class="meter-pct">PROFICIENT</span>
+              </div>
+              <div class="meter-bar-track">
+                <div class="meter-bar-fill fill-cyan" style="width: 85%;"></div>
+              </div>
+            </div>
+            <div class="box-footer-tags">
+              <span class="mini-tag">HTML5</span>
+              <span class="mini-tag">CSS3</span>
+              <span class="mini-tag">JAVASCRIPT</span>
+            </div>
+          </div>
+
+          <!-- Skill Card 3: Editing Tools -->
+          <div class="cyber-box-card skill-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">🎨</div>
+              <span class="box-kicker">CREATIVE MEDIA</span>
+            </div>
+            <h3 class="box-title">Different Editing Tools</h3>
+            <p class="box-body-text">
+              Experience with modern video, graphics, and multimedia editing software to produce sleek visual assets and presentation content.
+            </p>
+            <div class="skill-meter-wrap">
+              <div class="skill-meter-label">
+                <span>GRAPHICS & VIDEO EDITING</span>
+                <span class="meter-pct">CREATIVE</span>
+              </div>
+              <div class="meter-bar-track">
+                <div class="meter-bar-fill fill-purple" style="width: 82%;"></div>
+              </div>
+            </div>
+            <div class="box-footer-tags">
+              <span class="mini-tag">VIDEO EDITING</span>
+              <span class="mini-tag">GRAPHICS</span>
+              <span class="mini-tag">CANVA / SUITE</span>
+            </div>
+          </div>
+
+          <!-- Skill Card 4: AI Tools & Developer Tools -->
+          <div class="cyber-box-card skill-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">🤖</div>
+              <span class="box-kicker">INTELLIGENCE & DEV TOOLS</span>
+            </div>
+            <h3 class="box-title">AI Tools & Dev Workflows</h3>
+            <p class="box-body-text">
+              Working actively with AI productivity tools, prompt engineering, Git version control, GitHub repositories, and modern IDEs.
+            </p>
+            <div class="skill-meter-wrap">
+              <div class="skill-meter-label">
+                <span>AI INTEGRATION & GIT</span>
+                <span class="meter-pct">FAST-PACED</span>
+              </div>
+              <div class="meter-bar-track">
+                <div class="meter-bar-fill fill-amber" style="width: 90%;"></div>
+              </div>
+            </div>
+            <div class="box-footer-tags">
+              <span class="mini-tag">AI TOOLS</span>
+              <span class="mini-tag">GIT</span>
+              <span class="mini-tag">GITHUB</span>
+              <span class="mini-tag">VS CODE</span>
+            </div>
+          </div>
+
+          <!-- Skill Card 5: Professional Typing Skill (Supercar Speedometer Gauge!) -->
+          <div class="cyber-box-card skill-box-card card-typing-speedometer">
+            <div class="box-card-header">
+              <div class="box-icon">⚡</div>
+              <span class="box-kicker">HIGH VELOCITY INPUT</span>
+            </div>
+            <h3 class="box-title">Professional Typing Skill</h3>
+            <p class="box-body-text">
+              High-speed touch typing with high accuracy, enabling rapid code generation and command-line agility.
+            </p>
+            <!-- Speedometer Graphic -->
+            <div class="speedometer-hud-gauge">
+              <div class="gauge-arc">
+                <div class="gauge-needle"></div>
+              </div>
+              <div class="gauge-data">
+                <span class="gauge-wpm">75+</span>
+                <span class="gauge-label">WPM ACCELERATION</span>
+              </div>
+            </div>
+            <div class="box-footer-tags">
+              <span class="mini-tag">TOUCH TYPING</span>
+              <span class="mini-tag">98% ACCURACY</span>
+              <span class="mini-tag">PRO SPEED</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Section Navigation Footer -->
+        <div class="section-footer-nav">
+          <button class="telemetry-nav-btn" onclick="navigateTo('certifications')">
+            <span>NEXT: CERTIFICATIONS & ACHIEVEMENTS</span> &rarr;
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 05: CERTIFICATIONS & ACHIEVEMENTS ==================== -->
+    <section class="page-section" id="page-certifications" data-page="certifications">
+      <div class="section-container">
+        
+        <!-- Section Title HUD -->
+        <div class="section-header-hud">
+          <div class="hud-badge-tag">
+            <span class="tag-icon">🏆</span>
+            <span>TROPHY_VAULT // 05</span>
+          </div>
+          <h2 class="section-title">ACHIEVEMENTS & CERTIFICATIONS</h2>
+          <p class="section-subtitle">Sports champions, strategic hobbies, AI workshops, and cloud computing degrees in box format.</p>
+        </div>
+
+        <!-- Category A: HOBBIES & SPORTS ACHIEVEMENTS (As Requested: 1st chess, 1st badminton as hobbies) -->
+        <div class="category-divider">
+          <span class="category-title">🏎️ CATEGORY 01 // HOBBIES & SPORTS ACHIEVEMENTS</span>
+          <div class="category-line"></div>
+        </div>
+
+        <div class="cards-grid certs-grid">
+          
+          <!-- Achievement 1: Chess -->
+          <div class="cyber-box-card trophy-card">
+            <div class="trophy-rank-badge">1ST PLACE</div>
+            <div class="box-card-header">
+              <div class="box-icon">♟️</div>
+              <span class="box-kicker">TACTICAL STRATEGY</span>
+            </div>
+            <h3 class="box-title">1st in Chess Under 17</h3>
+            <p class="box-body-text">
+              Secured 1st position in competitive Under-17 Chess. Honed deep strategic planning, calculated tactics, pattern recognition, and pressure management.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">GOLD / 1ST</span>
+              <span class="mini-tag">UNDER 17</span>
+              <span class="mini-tag">STRATEGIC HOBBY</span>
+            </div>
+          </div>
+
+          <!-- Achievement 2: Badminton Duo -->
+          <div class="cyber-box-card trophy-card">
+            <div class="trophy-rank-badge">1ST PLACE</div>
+            <div class="box-card-header">
+              <div class="box-icon">🏸</div>
+              <span class="box-kicker">TEAM COORDINATION</span>
+            </div>
+            <h3 class="box-title">1st in Badminton Duo Under 17</h3>
+            <p class="box-body-text">
+              Champions in the Under-17 Doubles Badminton tournament. High agility, fast reflexes, team synergy, and competitive athletic stamina.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">CHAMPION DUO</span>
+              <span class="mini-tag">UNDER 17</span>
+              <span class="mini-tag">SPORTS HOBBY</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Category B: TECHNICAL CERTIFICATIONS & COURSES -->
+        <div class="category-divider">
+          <span class="category-title">🤖 CATEGORY 02 // TECHNICAL CERTIFICATIONS & COURSES</span>
+          <div class="category-line"></div>
+        </div>
+
+        <div class="cards-grid certs-grid">
+          
+          <!-- Certification 1: AI Workshops Certificate -->
+          <div class="cyber-box-card cert-card">
+            <div class="cert-verify-stamp">CERTIFIED</div>
+            <div class="box-card-header">
+              <div class="box-icon">📜</div>
+              <span class="box-kicker">HANDS-ON WORKSHOPS</span>
+            </div>
+            <h3 class="box-title">AI Workshops Certificate</h3>
+            <p class="box-body-text">
+              Completed intensive AI workshops exploring artificial intelligence methodologies, generative model architectures, and modern engineering implementations.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">AI WORKSHOPS</span>
+              <span class="mini-tag">MACHINE INTELLIGENCE</span>
+              <span class="mini-tag">VERIFIED</span>
+            </div>
+          </div>
+
+          <!-- Certification 2: AI Course & Cloud Computing Course Degree -->
+          <div class="cyber-box-card cert-card">
+            <div class="cert-verify-stamp">DEGREE // CREDENTIAL</div>
+            <div class="box-card-header">
+              <div class="box-icon">☁️</div>
+              <span class="box-kicker">SPECIALIZED CURRICULUM</span>
+            </div>
+            <h3 class="box-title">AI Course & Cloud Computing Course</h3>
+            <p class="box-body-text">
+              Earned credentials in comprehensive AI foundations and Cloud Computing architecture, mastering scalable compute resources, cloud deployment concepts, and intelligent pipelines.
+            </p>
+            <div class="box-footer-tags">
+              <span class="mini-tag">AI COURSE</span>
+              <span class="mini-tag">CLOUD COMPUTING</span>
+              <span class="mini-tag">COURSE DEGREE</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Superbike Accent Wallpaper Card -->
+        <div class="superbike-accent-card" style="background-image: url('superbike-bg.jpg');">
+          <div class="superbike-accent-overlay">
+            <div class="superbike-info">
+              <span class="accent-title">KAWASAKI NINJA H2R & DUCATI SPEED AESTHETIC</span>
+              <p>Zero limits in learning, agility in coding, power in problem solving.</p>
+            </div>
+            <button class="accent-jump-btn" onclick="navigateTo('contact')">
+              <span>PROCEED TO CONTACT COMMS</span> &rarr;
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 06: CONTACT ==================== -->
+    <section class="page-section" id="page-contact" data-page="contact">
+      <div class="section-container">
+        
+        <!-- Section Title HUD -->
+        <div class="section-header-hud">
+          <div class="hud-badge-tag">
+            <span class="tag-icon">📡</span>
+            <span>COMMS_UPLINK // 06</span>
+          </div>
+          <h2 class="section-title">CONTACT ME</h2>
+          <p class="section-subtitle">Reach out directly via Gmail, Phone, GitHub, or LinkedIn.</p>
+        </div>
+
+        <!-- Contact Box Cards (As Requested: Keep it designed, less text, box shape) -->
+        <div class="cards-grid contact-cards-grid">
+          
+          <!-- Box 1: Gmail Box -->
+          <div class="cyber-box-card contact-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">✉️</div>
+              <span class="box-kicker">DIRECT EMAIL</span>
+            </div>
+            <h3 class="box-title">Gmail</h3>
+            <p class="contact-value-text" id="emailVal">aayush.meena.95090@gmail.com</p>
+            <div class="contact-btn-group">
+              <a href="mailto:aayush.meena.95090@gmail.com" class="telemetry-action-btn">
+                <span>SEND EMAIL</span> &rarr;
+              </a>
+              <button class="telemetry-copy-btn" onclick="copyToClipboard('aayush.meena.95090@gmail.com', 'Email copied!')" title="Copy Email">
+                📋 COPY
+              </button>
+            </div>
+            <div class="box-footer-tags">
+              <span class="mini-tag">PRIMARY COMMS</span>
+              <span class="mini-tag">FAST RESPONSE</span>
+            </div>
+          </div>
+
+          <!-- Box 2: Phone Box -->
+          <div class="cyber-box-card contact-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">📞</div>
+              <span class="box-kicker">CELLULAR LINE</span>
+            </div>
+            <h3 class="box-title">Phone Number</h3>
+            <p class="contact-value-text" id="phoneVal">+91 9509027309</p>
+            <div class="contact-btn-group">
+              <a href="tel:9509027309" class="telemetry-action-btn">
+                <span>CALL NOW</span> &rarr;
+              </a>
+              <button class="telemetry-copy-btn" onclick="copyToClipboard('9509027309', 'Phone number copied!')" title="Copy Phone Number">
+                📋 COPY
+              </button>
+            </div>
+            <div class="box-footer-tags">
+              <span class="mini-tag">VOICE & WHATSAPP</span>
+              <span class="mini-tag">DIRECT LINE</span>
+            </div>
+          </div>
+
+          <!-- Box 3: Social Uplinks -->
+          <div class="cyber-box-card contact-box-card">
+            <div class="box-card-header">
+              <div class="box-icon">🌐</div>
+              <span class="box-kicker">PROFESSIONAL NETWORKS</span>
+            </div>
+            <h3 class="box-title">Online Profiles</h3>
+            <div class="social-links-stacked">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-card-item">
+                <span class="soc-icon">💻</span>
+                <div class="soc-text">
+                  <span class="soc-name">GitHub</span>
+                  <span class="soc-handle">Repositories & Code</span>
+                </div>
+                <span class="soc-arrow">&rarr;</span>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-card-item">
+                <span class="soc-icon">💼</span>
+                <div class="soc-text">
+                  <span class="soc-name">LinkedIn</span>
+                  <span class="soc-handle">Professional Network</span>
+                </div>
+                <span class="soc-arrow">&rarr;</span>
+              </a>
+            </div>
+            <div class="box-footer-tags">
+              <span class="mini-tag">OPEN TO COLLABS</span>
+              <span class="mini-tag">NETWORKING</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Quick Dispatch Message Terminal -->
+        <div class="cyber-box-card message-terminal-card">
+          <div class="box-card-header">
+            <div class="box-icon">💻</div>
+            <span class="box-kicker">HUD TRANSMISSION TERMINAL</span>
+          </div>
+          <form class="contact-terminal-form" onsubmit="handleContactSubmit(event)">
+            <div class="form-grid-row">
+              <div class="input-hud-group">
+                <label for="senderName">YOUR CALLSIGN / NAME:</label>
+                <input type="text" id="senderName" required placeholder="e.g. Alex Sharma">
+              </div>
+              <div class="input-hud-group">
+                <label for="senderEmail">RETURN COMMS / EMAIL:</label>
+                <input type="email" id="senderEmail" required placeholder="name@domain.com">
+              </div>
+            </div>
+            <div class="input-hud-group">
+              <label for="senderMsg">TRANSMISSION MESSAGE:</label>
+              <textarea id="senderMsg" rows="3" required placeholder="Type your message, project idea, or collaboration request..."></textarea>
+            </div>
+            <div class="terminal-action-row">
+              <button type="submit" class="terminal-send-btn">
+                <span>TRANSMIT DISPATCH</span> ⚡
+              </button>
+              <span class="terminal-hint" id="terminalStatusMsg">Awaiting input transmission...</span>
+            </div>
+          </form>
+        </div>
+
+        <!-- Section Navigation Footer -->
+        <div class="section-footer-nav">
+          <button class="telemetry-nav-btn" onclick="navigateTo('home')">
+            <span>&larr; RETURN TO HOME COCKPIT</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification Pop-up -->
+  <div id="toastNotification" class="toast-notification" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
